@@ -8,7 +8,7 @@ jobs:
     build:
 #         runs-on: ubuntu-latest
 #         uses: enteraga6/cc_bazel_test/.github/workflows/reusable_bazel_builder.yaml@main
-        uses: enteraga6/slsa-github-generator/.github/workflows/reusable_bazel_builder.yaml@bazel-builder
+        uses: enteraga6/slsa-github-generator/.github/workflows/builder_bazel_slsa3.yml@bazel-builder
         with:
 #             repo_path: "./cc_bazel_test"     #USER INPUTTED MATERIAL??? wonder if can grab it from checkout
             targets: "//src:fib //src:hello" #USER INPUTTED MATERIAL
