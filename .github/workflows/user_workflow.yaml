@@ -10,7 +10,6 @@ jobs:
           id-token: write # For signing
           contents: read # For repo checkout.
           actions: read # For getting workflow run info.
-          packages: write
         uses: enteraga6/slsa-github-generator/.github/workflows/builder_bazel_slsa3.yml@bazel-builder
         with:
             targets: "//src:fib //src:hello" #USER INPUTTED MATERIAL
@@ -21,9 +20,4 @@ jobs:
             - name: Download Attestation
               uses: actions/download-artifact@v3
               with:
-                name: "${{ needs.build.outputs.attestations-download-name }}"
-            - name: jq recon for binaries
-              shell: bash
-              run: |
-                  echo "${{ needs.build.outputs.build-artifacts-outputs }}"
-                  jq . "${{ needs.build.outputs.build-artifacts-outputs }}"             
+                name: "${{ needs.build.outputs.attestations-download-name }}"        
