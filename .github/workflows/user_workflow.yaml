@@ -25,5 +25,5 @@ jobs:
             - name: jq recon for binaries
               shell: bash
               run: |
-                  echo ${{ needs.build.outputs.build-artifacts-outputs }}
-                  jq . ${{ needs.build.outputs.build-artifacts-outputs }}             
+                  echo "${{ needs.build.outputs.build-artifacts-outputs }}"
+                  jq . "${{ needs.build.outputs.build-artifacts-outputs }}"             
