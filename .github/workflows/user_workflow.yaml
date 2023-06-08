@@ -21,7 +21,7 @@ jobs:
             - name: Download Attestation
               uses: actions/download-artifact@v3
               with:
-                name: "${{ jobs.build.outputs.attestations-download-name }}"
+                name: "${{ needs.build.outputs.attestations-download-name }}"
             - name: jq recon for binaries
               shell: bash
-              run: jq -r '.[] | . name' ${{ jobs.build.outputs.build-artifacts-outputs }}             
+              run: jq -r '.[] | . name' ${{ needs.build.outputs.build-artifacts-outputs }}             
