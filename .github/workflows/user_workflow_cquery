@@ -1,0 +1,23 @@
+name: cquery - User Workflow
+
+on: 
+    workflow_dispatch:
+    release:
+        types: [created]
+jobs:
+    build:
+        permissions:
+          id-token: write # For signing
+          contents: read # For repo checkout.
+          actions: read # For getting workflow run info.
+        uses: enteraga6/slsa-github-generator/.github/workflows/builder_bazel_slsa3.yml@bazel-builder-cquery
+        with:
+            targets: "//src:fib //src:hello" #USER INPUTTED MATERIAL
+    download:
+            needs: [build]
+            runs-on: ubuntu-latest
+            steps:
+            - name: Download Attestation
+              uses: actions/download-artifact@v3
+              with:
+                name: "${{ needs.build.outputs.attestations-download-name }}"        
